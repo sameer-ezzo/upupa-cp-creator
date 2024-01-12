@@ -73,7 +73,7 @@ node upupa-app.cjs --nx-workspace-root=[PATH_TO_NX_WORKSPACE]
 These options can be used when running the script from the command line. For example:
 
 ```
-node upupa-app.cjs --nx-workspace-root ./my-nx-workspace --app-name my-app --app-port 4300 --app-prefix my-prefix --bundler webpack --backendProject my-backend --style scss
+node upupa-app.cjs --nx-workspace-root ./my-nx-workspace --name my-app --port 4300 --prefix my-prefix --bundler webpack --backendProject my-backend --style scss
 ```
 
 This will create a control panel app in the specified NX workspace with the given parameters.

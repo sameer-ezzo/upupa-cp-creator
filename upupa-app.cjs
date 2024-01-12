@@ -6,9 +6,11 @@ const { execSync } = require('child_process');
 
 
 const tsconfigBaseTemplate = require('./tsconfig.base.template.json');
-workspaceRepo = 'git@github.com:sameer-ezzo/workspace.git'
-libsPath = `libs`;
-appsPath = `apps`;
+const workspaceRepo = 'git@github.com:sameer-ezzo/workspace.git'
+const libsPath = `libs`;
+const appsPath = `apps`;
+
+
 appInfo = null
 commander
     .option('-root, --nx-workspace-root <root>', 'Specify the NX workspace root path to create the CP app in', process.cwd())
@@ -62,7 +64,7 @@ async function createControlPanelApp() {
         }
         else {
             console.error(`Angular app "${appInfo.name}" already exists.`);
-            // process.exit(1);
+            process.exit(1);
         }
 
         // clone base components
