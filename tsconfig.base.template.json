@@ -1,0 +1,97 @@
+{
+    "paths": {
+        "@noah-ark/common": [
+            "libs/workspace/noah-ark/common/src/index.ts"
+        ],
+        "@noah-ark/event-bus": [
+            "libs/workspace/noah-ark/event-bus/src/index.ts"
+        ],
+        "@noah-ark/expression-engine": [
+            "libs/workspace/noah-ark/expression-engine/src/index.ts"
+        ],
+        "@noah-ark/json-patch": [
+            "libs/workspace/noah-ark/json-patch/src/index.ts"
+        ],
+        "@noah-ark/path-matcher": [
+            "libs/workspace/noah-ark/path-matcher/src/index.ts"
+        ],
+        "@ss/api": [
+            "libs/workspace/ss/ss-api/src/index.ts"
+        ],
+        "@ss/auth": [
+            "libs/workspace/ss/ss-auth/src/index.ts"
+        ],
+        "@ss/common": [
+            "libs/workspace/ss/ss-common/src/index.ts"
+        ],
+        "@ss/data": [
+            "libs/workspace/ss/ss-data/src/index.ts"
+        ],
+        "@ss/job": [
+            "libs/workspace/ss/ss-job/src/index.ts"
+        ],
+        "@ss/notifications": [
+            "libs/workspace/ss/ss-notifications/src/index.ts"
+        ],
+        "@ss/payment": [
+            "libs/workspace/ss/ss-payment/src/index.ts"
+        ],
+        "@ss/rules": [
+            "libs/workspace/ss/ss-rules/src/index.ts"
+        ],
+        "@ss/storage": [
+            "libs/workspace/ss/ss-storage/src/index.ts"
+        ],
+        "@upupa/auth": [
+            "libs/workspace/upupa/auth/src/index.ts"
+        ],
+        "@upupa/common": [
+            "libs/workspace/upupa/common/src/index.ts"
+        ],
+        "@upupa/cp": [
+            "libs/workspace/upupa/cp/src/index.ts"
+        ],
+        "@upupa/data": [
+            "libs/workspace/upupa/data/src/index.ts"
+        ],
+        "@upupa/dynamic-form": [
+            "libs/workspace/upupa/dynamic-form/src/index.ts"
+        ],
+        "@upupa/dynamic-form-material-theme": [
+            "libs/workspace/upupa/dynamic-form-material-theme/src/index.ts"
+        ],
+        "@upupa/dynamic-form-native-theme": [
+            "libs/workspace/upupa/dynamic-form-native-theme/src/index.ts"
+        ],
+        "@upupa/html-editor": [
+            "libs/workspace/upupa/html-editor/src/index.ts"
+        ],
+        "@upupa/language": [
+            "libs/workspace/upupa/language/src/index.ts"
+        ],
+        "@upupa/membership": [
+            "libs/workspace/upupa/membership/src/index.ts"
+        ],
+        "@upupa/payment": [
+            "libs/workspace/upupa/payment/src/index.ts"
+        ],
+        "@upupa/permissions": [
+            "libs/workspace/upupa/permissions/src/index.ts"
+        ],
+        "@upupa/popover": [
+            "libs/workspace/upupa/popover/src/index.ts"
+        ],
+        "@upupa/table": [
+            "libs/workspace/upupa/table/src/index.ts"
+        ],
+        "@upupa/tags": [
+            "libs/workspace/upupa/tags/src/index.ts"
+        ],
+        "@upupa/upload": [
+            "libs/workspace/upupa/upload/src/index.ts"
+        ],
+        "socket.io": [
+            "node_modules/socket.io/lib/index.js"
+        ]
+    }
+}

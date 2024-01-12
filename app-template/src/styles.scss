@@ -1,0 +1,138 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$control-panel-primary: mat.define-palette(mat.$indigo-palette);
+$control-panel-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$control-panel-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$control-panel-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $control-panel-primary,
+      accent: $control-panel-accent,
+      warn: $control-panel-warn
+    )
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($control-panel-theme);
+
+/* You can add global styles to this file, and also import other style files */
+// @use '@angular/material'as mat;
+// @import url('https://fonts.googleapis.com/css2?family=Exo:wght@200&display=swap');
+// @include mat.core();
+// $idrisart-gold: (50: #d4aa65,
+// 100: #d4aa65,
+// 200: #d4aa65,
+// 300: #d4aa65,
+// 400: #d4aa65,
+// 500: #d4aa65,
+// 600: #d4aa65,
+// 700: #d4aa65,
+// 800: #d4aa65,
+// 900: #d4aa65,
+// A100: #867755,
+// A200: #d4aa65,
+// A400: #d4aa65,
+// A700: #d4aa65,
+// contrast: (50: rgba(black, 0.87), 100: rgba(black, 0.87), 200: rgba(black, 0.87), 300: rgba(black, 0.87), 400: rgba(black, 0.87), 500: white, 600: white, 700: white, 800: white, 900: white, A100: rgba(black, 0.87), A200: rgba(black, 0.87), A400: rgba(black, 0.87), A700: white, ));
+// $bv-orange: (50: #ffffff,
+// 100: #fff7f4,
+// 200: #fecdbd,
+// 300: #fc9977,
+// 400: #fc8259,
+// 500: #fb6c3b,
+// 600: #fa551d,
+// 700: #f44205,
+// 800: #d63a04,
+// 900: #b83204,
+// A100: #ffffff,
+// A200: #fff7f4,
+// A400: #fc8259,
+// A700: #f44205,
+// contrast: (50: rgba(black, 0.87), 100: rgba(black, 0.87), 200: rgba(black, 0.87), 300: rgba(black, 0.87), 400: rgba(black, 0.87), 500: white, 600: white, 700: white, 800: white, 900: white, A100: rgba(black, 0.87), A200: rgba(black, 0.87), A400: rgba(black, 0.87), A700: white, ));
+
+// $idrisesen-art-primary: mat.define-palette($idrisart-gold);
+// $idrisesen-art-accent: mat.define-palette($idrisart-gold,A200,A100,A400);
+// $idrisesen-art-warn: mat.define-palette($idrisart-gold);
+// $dark-primary: mat.define-palette($idrisart-gold);
+// $dark-accent: mat.define-palette($idrisart-gold,A200,A100,A400);
+// $dark-warn: mat.define-palette(mat.$deep-orange-palette);
+// $idrisesen-art-theme: mat.define-dark-theme((color: (primary: $dark-primary, accent: $dark-accent, warn: $dark-warn, ), ));
+// @include mat.all-component-themes($idrisesen-art-theme);
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none !important;
+  outline: none;
+  outline-offset: 0.05em;
+}
+
+a {
+  text-decoration: none;
+}
+.spacer{
+  flex: 1 1 auto;
+}
+.mat-expansion-panel-body {
+  padding: 0 24px 16px;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.upupa-dialog-overlay {
+  .header.titeled {
+    background-color: #2b2b2b;
+  }
+  .actions-bar {
+    background: #2b2b2b;
+  }
+  .ck.ck-toolbar {
+    background: #878787;
+  }
+}
+
+data-table > div:first-child {
+  height: calc(100% - 120px);
+}
