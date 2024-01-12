@@ -59,14 +59,16 @@ node upupa-app.cjs --nx-workspace-root=[PATH_TO_NX_WORKSPACE]
 
 #### Upupa-App Cli Options And Arguments
 
-* --nx-workspace-root: This option allows you to specify the NX workspace root path where the Upupa control panel app will be created. By default, it uses the current working directory.
+| Option            | Description                                                                   | Default Value   |
+| ----------------- | ----------------------------------------------------------------------------- | --------------- |
+| --nx-workspace-root        | This option allows you to specify the NX workspace root path where the Upupa control panel app will be created.       | current working directory |
+| --app-name        | Specifies the name of the Angular app. Default name is 'control-panel'.       | 'control-panel' |
+| --app-port        | Specifies the port on which the Angular app will run. Default port is 4201.   | 4201            |
+| --app-prefix      | Specifies the prefix for the Angular app.                                     | -               |
+| --bundler         | Specifies the bundler to be used. Options are 'webpack' and 'esbuild'. Default bundler is 'esbuild'. | 'esbuild'       |
+| --backendProject  | Specifies the name of the backend project.                                    | -               |
+| --style           | Specifies the style preprocessor to be used. Options are 'css', 'scss', 'sass', and 'less'. Default preprocessor is 'scss'. | 'scss'          |
 
-* --app-name: This option allows you to specify the name of the Angular app. The default name is 'control-panel'.
-* --app-port: This option allows you to specify the port on which the Angular app will run. The default port is 4201.
-* --app-prefix: This option allows you to specify the prefix for the Angular app.
-* --bundler: This option allows you to specify the bundler to be used. The options are 'webpack' and 'esbuild'. The default bundler is 'esbuild'.
-* --backendProject: This option allows you to specify the name of the backend project.
-* --style: This option allows you to specify the style preprocessor to be used. The options are 'css', 'scss', 'sass', and 'less'. The default preprocessor is 'scss'.
 
 These options can be used when running the script from the command line. For example:
 
