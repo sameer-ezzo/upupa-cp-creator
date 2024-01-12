@@ -143,11 +143,8 @@ async function adWorkspaceLibs(nxw_root) {
 
 async function addAngularMaterial(nxw_root, app) {
     console.log(`Adding Angular Material to ${nxw_root}/${app}`);
-
-
-    const command = `cd ${nxw_root} && pnpm add @angular/material && npx nx g @angular/material:ng-add --project=${app}`;
-    execSync(command, { stdio: 'inherit', shell: true });
-
+    execSync(`cd ${nxw_root} && pnpm add @angular/material -w`, { stdio: 'inherit', shell: true });
+    execSync(`cd ${nxw_root} && pnpx nx g @angular/material:ng-add --project=${app} --theme=custom --typography=true --animations=true --hammerJs=true`, { stdio: 'inherit', shell: true });
     console.log(`Angular Material added successfully to ${nxw_root}/${app}`);
 }
 
@@ -164,7 +161,5 @@ async function checkSubmoduleExists(nxw_root, path) {
         throw error;
     }
 }
-
-
 
 createControlPanelApp()
