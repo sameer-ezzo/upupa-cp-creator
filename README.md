@@ -24,3 +24,4 @@ chmod +x upupa-app.cjs
 pnpm link
 node upupa-app.cjs --nx-workspace-root=[PATH_TO_NX_WORKSPACE]
 ````
+
