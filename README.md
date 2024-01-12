@@ -40,7 +40,7 @@ curl -LkSs https://github.com/sameer-ezzo/upupa-cp-creator/archive/main.tar.gz |
 Navigate into the downloaded directory:
 
 ```
-cd upupa-cp-creator-main
+cd upupa-cp-creator-main && pnpm link .
 ```
 
 - Step 3
