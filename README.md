@@ -57,6 +57,24 @@ Run the script, specifying the path to your NX workspace:
 node upupa-app.cjs --nx-workspace-root=[PATH_TO_NX_WORKSPACE]
 ```
 
-This process will seamlessly add the Upupa Control Panel app to your NX workspace.
+#### Upupa-App Cli Options And Arguments
 
+* --nx-workspace-root: This option allows you to specify the NX workspace root path where the Upupa control panel app will be created. By default, it uses the current working directory.
+
+* --app-name: This option allows you to specify the name of the Angular app. The default name is 'control-panel'.
+* --app-port: This option allows you to specify the port on which the Angular app will run. The default port is 4201.
+* --app-prefix: This option allows you to specify the prefix for the Angular app.
+* --bundler: This option allows you to specify the bundler to be used. The options are 'webpack' and 'esbuild'. The default bundler is 'esbuild'.
+* --backendProject: This option allows you to specify the name of the backend project.
+* --style: This option allows you to specify the style preprocessor to be used. The options are 'css', 'scss', 'sass', and 'less'. The default preprocessor is 'scss'.
+
+These options can be used when running the script from the command line. For example:
+
+```
+node upupa-app.cjs --nx-workspace-root ./my-nx-workspace --app-name my-app --app-port 4300 --app-prefix my-prefix --bundler webpack --backendProject my-backend --style scss
+```
+
+This will create a control panel app in the specified NX workspace with the given parameters.
+
+This process will seamlessly add the Upupa Control Panel app to your NX workspace.
 Happy coding!

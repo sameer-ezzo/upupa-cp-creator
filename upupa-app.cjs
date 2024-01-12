@@ -11,7 +11,7 @@ libsPath = `libs`;
 appsPath = `apps`;
 appInfo = null
 commander
-    .option('-nxw_root, --nx-workspace-root <nxw_root>', 'Specify the NX workspace root path to create the CP app in', process.cwd())
+    .option('-nxw-root, --nx-workspace-root <nxw-root>', 'Specify the NX workspace root path to create the CP app in', process.cwd())
     .option('-app, --app-name <app>', 'Specify the Angular app name', 'control-panel')
     .option('-p, --app-port <port>', 'Specify the Angular app port: default is 4201', '4201')
     .option('-pref, --app-prefix <prefix>', 'Specify the Angular app prefix')
