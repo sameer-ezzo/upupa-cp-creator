@@ -62,9 +62,9 @@ node upupa-app.cjs --nx-workspace-root=[PATH_TO_NX_WORKSPACE]
 | Option            | Description                                                                   | Default Value   |
 | ----------------- | ----------------------------------------------------------------------------- | --------------- |
 | --nx-workspace-root        | This option allows you to specify the NX workspace root path where the Upupa control panel app will be created.       | current working directory |
-| --app-name        | Specifies the name of the Angular app. Default name is 'control-panel'.       | 'control-panel' |
-| --app-port        | Specifies the port on which the Angular app will run. Default port is 4201.   | 4201            |
-| --app-prefix      | Specifies the prefix for the Angular app.                                     | -               |
+| --name        | Specifies the name of the Angular app. Default name is 'control-panel'.       | 'control-panel' |
+| --port        | Specifies the port on which the Angular app will run. Default port is 4201.   | 4201            |
+| --prefix      | Specifies the prefix for the Angular app.                                     | -               |
 | --bundler         | Specifies the bundler to be used. Options are 'webpack' and 'esbuild'. Default bundler is 'esbuild'. | 'esbuild'       |
 | --backendProject  | Specifies the name of the backend project.                                    | -               |
 | --style           | Specifies the style preprocessor to be used. Options are 'css', 'scss', 'sass', and 'less'. Default preprocessor is 'scss'. | 'scss'          |

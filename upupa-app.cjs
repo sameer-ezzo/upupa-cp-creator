@@ -11,10 +11,10 @@ libsPath = `libs`;
 appsPath = `apps`;
 appInfo = null
 commander
-    .option('-nxw-root, --nx-workspace-root <nxw-root>', 'Specify the NX workspace root path to create the CP app in', process.cwd())
-    .option('-app, --app-name <app>', 'Specify the Angular app name', 'control-panel')
-    .option('-p, --app-port <port>', 'Specify the Angular app port: default is 4201', '4201')
-    .option('-pref, --app-prefix <prefix>', 'Specify the Angular app prefix')
+    .option('-root, --nx-workspace-root <root>', 'Specify the NX workspace root path to create the CP app in', process.cwd())
+    .option('-name, --name <name>', 'Specify the Angular app name', 'control-panel')
+    .option('-p, --port <port>', 'Specify the Angular app port: default is 4201', '4201')
+    .option('-pref, --prefix <prefix>', 'Specify the Angular app prefix')
     .option('-b, --bundler <bundler>', 'Specify the bundler (webpack, esbuild): default is esbuild', 'esbuild')
     .option('-bp, --backendProject <backendProject>', 'Specify the backend project name')
     .option('-s, --style <style>', 'Specify the style preprocessor (css, scss, sass, less): default is scss', 'scss')
@@ -22,8 +22,7 @@ commander
 
 async function createControlPanelApp() {
     try {
-        const { nxWorkspaceRoot, appName, appPort, style, bundler, appPrefix, backendProject } = commander._optionValues;
-        appInfo = { nxWorkspaceRoot, appName, appPort, style, bundler, appPrefix, backendProject }
+        appInfo = readAppInfo();
 
         // check if nx.json exists
         const nxJsonExists = await fs.pathExists(`${appInfo.nxWorkspaceRoot}/nx.json`);
@@ -37,7 +36,7 @@ async function createControlPanelApp() {
         }
 
 
-        const appFolderExists = await fs.pathExists(`${appInfo.nxWorkspaceRoot}/${appsPath}/${appInfo.appName}`);
+        const appFolderExists = await fs.pathExists(`${appInfo.nxWorkspaceRoot}/${appsPath}/${appInfo.name}`);
         if (!appFolderExists) {
             if (!(await fs.pathExists(`${appInfo.nxWorkspaceRoot}/${appsPath}`))) await fs.mkdir(`${appInfo.nxWorkspaceRoot}/${appsPath}`);
 
@@ -50,22 +49,24 @@ async function createControlPanelApp() {
             execSync(`cd ${appInfo.nxWorkspaceRoot} && pnpm install --verbose`, { stdio: 'inherit', shell: true });
 
 
-            let command = `cd ${appInfo.nxWorkspaceRoot} && pwd && pnpm exec nx generate @nx/angular:application --name=${appInfo.appName} --bundler=${appInfo.bundler || 'esbuild'} --directory=/${appsPath}/${appInfo.appName} --standalone=false  --port=${appInfo.port || '4201'} --projectNameAndRootFormat=as-provided --no-interactive --verbose`;
-            if (appInfo.prefix) command += ` --prefix=${appInfo.prefix}`
-            if (appInfo.backendProject) command += ` --backendProject=${appInfo.backendProject}`
+            let ngCmd = `pnpm exec nx generate @nx/angular:application --name=${appInfo.name} --bundler=${appInfo.bundler} --directory=/${appsPath}/${appInfo.name} --standalone=false  --port=${appInfo.port} --style=${appInfo.style || 'scss'} --projectNameAndRootFormat=as-provided --no-interactive --verbose`
+            if (appInfo.prefix) ngCmd += ` --prefix=${appInfo.prefix}`
+            if (appInfo.backendProject) ngCmd += ` --backendProject=${appInfo.backendProject}`
+            const command = `cd ${appInfo.nxWorkspaceRoot} && ${ngCmd}`;
+            console.log('executing: ', ngCmd);
             execSync(command, { stdio: 'inherit', shell: true });
-            console.log(`Angular app "${appInfo.appName}" created successfully.`);
-            await addAngularMaterial(appInfo.nxWorkspaceRoot, appInfo.appName);
+            console.log(`Angular app "${appInfo.name}" created successfully.`);
+            await addAngularMaterial(appInfo.nxWorkspaceRoot, appInfo.name);
             // setup tsconfig
-            await setupTsConfig(appInfo.nxWorkspaceRoot, appInfo.appName);
+            await setupTsConfig(appInfo.nxWorkspaceRoot, appInfo.name);
         }
         else {
-            console.error(`Angular app "${appInfo.appName}" already exists.`);
+            console.error(`Angular app "${appInfo.name}" already exists.`);
             // process.exit(1);
         }
 
         // clone base components
-        await cloneBaseComponents(`${appInfo.nxWorkspaceRoot}/${appsPath}/${appInfo.appName}`);
+        await cloneBaseComponents(`${appInfo.nxWorkspaceRoot}/${appsPath}/${appInfo.name}`);
 
         // add libs to workspace
         await adWorkspaceLibs(appInfo.nxWorkspaceRoot);
@@ -73,6 +74,11 @@ async function createControlPanelApp() {
         console.error(error.message);
         process.exit(1);
     }
+}
+
+function readAppInfo() {
+    const { nxWorkspaceRoot, name, port, style, bundler, prefix, backendProject } = commander._optionValues;
+    return { nxWorkspaceRoot, name, port, style, bundler, prefix, backendProject };
 }
 
 async function setupTsConfig(nxw_path, app) {
@@ -112,7 +118,7 @@ async function cloneBaseComponents(appPath) {
         if (srcStat.isDirectory()) await copyFolder(src, dist);
         else copyFile(src, dist)
     }
-    await copy(`${__dirname}/app-template/src`, `${appPath}/src`);    
+    await copy(`${__dirname}/app-template/src`, `${appPath}/src`);
 }
 
 
@@ -130,7 +136,7 @@ async function adWorkspaceLibs(nxw_root) {
     if (!libsFolderExists) await fs.mkdir(`${nxw_root}/libs`);
 
     const workspaceInstalled = await checkSubmoduleExists(nxw_root, 'libs/workspace');
-    if (!workspaceInstalled) await addSubmodule(nxw_root,workspaceRepo, 'libs/workspace');
+    if (!workspaceInstalled) await addSubmodule(nxw_root, workspaceRepo, 'libs/workspace');
 
     const appPaths = nx_tsconfig.compilerOptions.paths || {}
     const paths = Object.keys(tsconfigBaseTemplate.paths).filter(p => !appPaths[p])
@@ -155,7 +161,7 @@ async function checkSubmoduleExists(nxw_root, path) {
         const command = `cd ${nxw_root} && git submodule status ${path}`;
         const { stdout } = execSync(command, { stdio: 'pipe', shell: true });
         return !stdout || stdout.includes('-');
-        
+
     } catch (error) {
         if (error.message.includes('did not match any file(s) known to git')) return false;
         throw error;
