@@ -135,6 +135,7 @@ async function cloneBaseComponents(appPath) {
     const paths = [
         'src/app/layouts',
         'src/app/models',
+        'src/main.ts',
         'src/assets/langs',
         'src/assets/upupa.png',
         'src/app/accounts.module.ts',
