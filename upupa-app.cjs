@@ -64,12 +64,12 @@ async function createControlPanelApp() {
         }
         else {
             console.error(`Angular app "${appInfo.name}" already exists.`);
-            process.exit(1);
+            // process.exit(1);
         }
 
         // clone base components
         await cloneBaseComponents(`${appInfo.nxWorkspaceRoot}/${appsPath}/${appInfo.name}`);
-
+       
         // add libs to workspace
         await adWorkspaceLibs(appInfo.nxWorkspaceRoot);
     } catch (error) {
@@ -101,26 +101,54 @@ async function setupTsConfig(nxw_path, app) {
 
     await fs.writeFile(appTsConfigPath, JSON.stringify(tsconfig, null, 2), 'utf8');
 }
+const copyFile = async (src, dist) => {
+    const fileDistExists = await fs.pathExists(dist);
+    if (fileDistExists) {
+        console.info(`File ${dist} already exists. Renaming it to ${dist}.bak`);
+        await fs.rename(dist, `${dist}.bak`);
+    }
+    await fs.copy(src, dist)
+}
+const copyFolder = async (src, dist) => {
+
+    const distDirExists = await fs.pathExists(dist);
+    if (distDirExists) {
+        console.info(`${dist} already exists. Renaming it to ${dist}.bak`);
+        await fs.rename(dist, `${dist}.bak`);
+        await fs.mkdir(dist);
+    }
+
+    const files = await fs.readdir(src);
+    for (const file of files) {
+        copy(`${src}/${file}`, `${dist}/${file}`);
+    }
+}
+
+async function copy(src, dist) {
+    const srcStat = await fs.lstat(src);
+    if (srcStat.isDirectory()) await copyFolder(src, dist);
+    else copyFile(src, dist)
+}
 
 async function cloneBaseComponents(appPath) {
 
-    const copyFile = async (src, dist) => {
-        const fileDistExists = await fs.pathExists(dist);
-        if (!fileDistExists) await fs.copy(src, dist)
+    const paths = [
+        'src/app/layouts',
+        'src/app/models',
+        'src/assets/langs',
+        'src/assets/upupa.png',
+        'src/app/accounts.module.ts',
+        'src/app/material-imports.module.ts',
+        'src/app/app.module.ts',
+        'src/app/app.routes.ts',
+        'src/app/app.component.html',
+        'src/app/app.component.scss',
+        'src/app/app.component.spec.ts',
+    ]
+    
+    for (const path of paths) {
+        await copy(`${__dirname}/app-template/${path}`, `${appPath}/${path}`);
     }
-    const copyFolder = async (src, path) => {
-        const files = await fs.readdir(src);
-        for (const file of files) {
-            copy(`${src}/${file}`, `${path}/${file}`);
-        }
-    }
-    // generate a recursive function that copies a folder to a path
-    async function copy(src, dist) {
-        const srcStat = await fs.lstat(src);
-        if (srcStat.isDirectory()) await copyFolder(src, dist);
-        else copyFile(src, dist)
-    }
-    await copy(`${__dirname}/app-template/src`, `${appPath}/src`);
 }
 
 
