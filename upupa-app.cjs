@@ -170,6 +170,7 @@ async function copy(src, dist, overwrite = false) {
 async function cloneClientAppComponents(appPath, overwrite = false) {
 
     const paths = [
+        'proxy.conf.json',
         'src/app/layouts',
         'src/app/models',
         'src/main.ts',
