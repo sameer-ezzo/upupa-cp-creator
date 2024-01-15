@@ -19,7 +19,7 @@ export default class AdminLayoutComponent {
 
 
   dir$ = this.languageService.language$.pipe(switchMap((l) => of(languageDir(l))))
-  
+
   sideBarCmds$ = combineLatest([this.auth.user$, this.languageService.language$])
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     .pipe(map(([_, lang]) => accordionItems(lang, this.scheme)))
@@ -52,6 +52,25 @@ function accordionItems(lang: string, scaffoldingScheme: ScaffoldingScheme): Sid
       name: 'Content',
       items: [
         ...listItems
+      ]
+    },
+    {
+      groupName: 'Media',
+      name: 'media',
+
+      roles: ['super-admin'],
+      items: [
+        { name: 'storage', icon: 'home_storage', text: 'Storage', link: `/${lang}/storage` },
+      ]
+    },
+    {
+      groupName: 'Users',
+      name: 'users',
+      roles: ['super-admin', 'developer'],
+      items: [
+        { name: 'user', icon: 'group', text: 'Users', link: `/${lang}/management/users` },
+        { name: 'role', icon: 'groups', text: 'roles', link: `/${lang}/management/roles` },
+        { name: 'permission', icon: 'app_blocking', text: 'Permissions', link: `/${lang}/permissions` }
       ]
     }
   ];

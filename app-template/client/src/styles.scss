@@ -34,50 +34,6 @@ $control-panel-theme: mat.define-light-theme(
 // that you are using.
 @include mat.all-component-themes($control-panel-theme);
 
-/* You can add global styles to this file, and also import other style files */
-// @use '@angular/material'as mat;
-// @import url('https://fonts.googleapis.com/css2?family=Exo:wght@200&display=swap');
-// @include mat.core();
-// $idrisart-gold: (50: #d4aa65,
-// 100: #d4aa65,
-// 200: #d4aa65,
-// 300: #d4aa65,
-// 400: #d4aa65,
-// 500: #d4aa65,
-// 600: #d4aa65,
-// 700: #d4aa65,
-// 800: #d4aa65,
-// 900: #d4aa65,
-// A100: #867755,
-// A200: #d4aa65,
-// A400: #d4aa65,
-// A700: #d4aa65,
-// contrast: (50: rgba(black, 0.87), 100: rgba(black, 0.87), 200: rgba(black, 0.87), 300: rgba(black, 0.87), 400: rgba(black, 0.87), 500: white, 600: white, 700: white, 800: white, 900: white, A100: rgba(black, 0.87), A200: rgba(black, 0.87), A400: rgba(black, 0.87), A700: white, ));
-// $bv-orange: (50: #ffffff,
-// 100: #fff7f4,
-// 200: #fecdbd,
-// 300: #fc9977,
-// 400: #fc8259,
-// 500: #fb6c3b,
-// 600: #fa551d,
-// 700: #f44205,
-// 800: #d63a04,
-// 900: #b83204,
-// A100: #ffffff,
-// A200: #fff7f4,
-// A400: #fc8259,
-// A700: #f44205,
-// contrast: (50: rgba(black, 0.87), 100: rgba(black, 0.87), 200: rgba(black, 0.87), 300: rgba(black, 0.87), 400: rgba(black, 0.87), 500: white, 600: white, 700: white, 800: white, 900: white, A100: rgba(black, 0.87), A200: rgba(black, 0.87), A400: rgba(black, 0.87), A700: white, ));
-
-// $idrisesen-art-primary: mat.define-palette($idrisart-gold);
-// $idrisesen-art-accent: mat.define-palette($idrisart-gold,A200,A100,A400);
-// $idrisesen-art-warn: mat.define-palette($idrisart-gold);
-// $dark-primary: mat.define-palette($idrisart-gold);
-// $dark-accent: mat.define-palette($idrisart-gold,A200,A100,A400);
-// $dark-warn: mat.define-palette(mat.$deep-orange-palette);
-// $idrisesen-art-theme: mat.define-dark-theme((color: (primary: $dark-primary, accent: $dark-accent, warn: $dark-warn, ), ));
-// @include mat.all-component-themes($idrisesen-art-theme);
-
 html,
 body {
   width: 100%;

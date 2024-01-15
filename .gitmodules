@@ -1,0 +1,3 @@
+[submodule "upupa-control-panel-workspace/libs/workspace"]
+	path = upupa-control-panel-workspace/libs/workspace
+	url = git@github.com:sameer-ezzo/workspace.git
