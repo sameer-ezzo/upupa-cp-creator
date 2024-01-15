@@ -59,6 +59,16 @@ node upupa-app.cjs --nx-workspace-root ./my-nx-workspace --name my-app --port 43
 This will create a control panel app in the specified NX workspace with the given parameters.
 
 This process will seamlessly add the Upupa Control Panel app to your NX workspace.
+
+
+### Add super admin user
+1. Run the control panel NestJs app then request the following link: 
+```
+    http://localhost:3333/auth/install?email=admin@email.com&password=suPerAdmin
+```
+
+Make sure to use different email, password and the right port (Default is 3333)
+
 Happy coding!
 
 

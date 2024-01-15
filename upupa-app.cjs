@@ -80,13 +80,14 @@ async function createControlPanelApp() {
             logger.log('executing: ', ngCmd);
             execSync(command, { stdio: 'inherit', shell: true });
             await addAngularMaterial(appInfo.nxWorkspaceRoot, appInfo.name);
-            await setupNgAppTsConfig(appInfo.nxWorkspaceRoot, appInfo.name);
             await cloneClientAppComponents(`${appInfo.nxWorkspaceRoot}/${appInfo.appsPath}/${appInfo.name}`, true);
+            await setupNgApp(appInfo.nxWorkspaceRoot, appInfo.name);
             logger.log(`Angular app "${appInfo.name}" created successfully.`);
         }
         else {
             logger.info(`Angular app "${appInfo.name}" already exists.`);
             await cloneClientAppComponents(`${appInfo.nxWorkspaceRoot}/${appInfo.appsPath}/${appInfo.name}`, false);
+            await setupNgApp(appInfo.nxWorkspaceRoot, appInfo.name);
         }
 
         await configureWorkspace(appInfo.nxWorkspaceRoot);
@@ -115,7 +116,7 @@ async function setupNodeAppTsConfig(nxw_path, app) {
 
     await fs.writeFile(appTsConfigPath, JSON.stringify(tsconfig, null, 2), 'utf8');
 }
-async function setupNgAppTsConfig(nxw_path, app) {
+async function setupNgApp(nxw_path, app) {
     const appTsConfigPath = `${nxw_path}/${appInfo.appsPath}/${app}/tsconfig.app.json`;
     const tsconfig = require(appTsConfigPath);
     tsconfig.include = [...(tsconfig.include || []), "src/**/*.model.ts"].filter((v, i, a) => a.indexOf(v) === i);
@@ -132,6 +133,12 @@ async function setupNgAppTsConfig(nxw_path, app) {
     } //todo: this should be removed once the @upupa/libs are updated to use these options
 
     await fs.writeFile(appTsConfigPath, JSON.stringify(tsconfig, null, 2), 'utf8');
+
+    const projectPath = `${nxw_path}/${appInfo.appsPath}/${app}/project.json`;
+    const project = require(projectPath);
+    const styles = project.targets.build.options.styles || [];
+    project.targets.build.options.styles = [...styles, `${appInfo.appsPath}/${app}/src/cp-styles.scss`].filter((v, i, a) => a.indexOf(v) === i);
+    await fs.writeFile(projectPath, JSON.stringify(project, null, 2), 'utf8');
 }
 const copyFile = async (src, dist) => {
     const fileDistExists = await fs.pathExists(dist);
@@ -174,6 +181,7 @@ async function cloneClientAppComponents(appPath, overwrite = false) {
         'src/app/layouts',
         'src/app/models',
         'src/main.ts',
+        'src/cp-styles.scss',
         'src/assets/langs',
         'src/assets/upupa.png',
         'src/app/accounts.module.ts',
@@ -250,7 +258,7 @@ async function configureWorkspace(nxw_root) {
     const nx_Paths = nx_tsconfig.compilerOptions.paths || {};
     const { angularCompilerOptions, compilerOptions } = tsconfigBaseTemplate
 
-    nx_tsconfig.compilerOptions = { ...compilerOptions, ...nx_tsconfig.compilerOptions };
+    nx_tsconfig.compilerOptions = { ...compilerOptions, ...(nx_tsconfig.compilerOptions || {}) };
     nx_tsconfig.angularCompilerOptions = { ...angularCompilerOptions, ...(nx_tsconfig.angularCompilerOptions || {}) };
 
     const paths = Object.keys(compilerOptions.paths)

@@ -60,7 +60,7 @@ function accordionItems(lang: string, scaffoldingScheme: ScaffoldingScheme): Sid
 
       roles: ['super-admin'],
       items: [
-        { name: 'storage', icon: 'home_storage', text: 'Storage', link: `/${lang}/storage` },
+        { name: 'storage', icon: 'home_storage', text: 'Storage', link: `/${lang}/admin/storage` },
       ]
     },
     {
@@ -68,9 +68,9 @@ function accordionItems(lang: string, scaffoldingScheme: ScaffoldingScheme): Sid
       name: 'users',
       roles: ['super-admin', 'developer'],
       items: [
-        { name: 'user', icon: 'group', text: 'Users', link: `/${lang}/management/users` },
-        { name: 'role', icon: 'groups', text: 'roles', link: `/${lang}/management/roles` },
-        { name: 'permission', icon: 'app_blocking', text: 'Permissions', link: `/${lang}/permissions` }
+        { name: 'user', icon: 'group', text: 'Users', link: `/${lang}/admin/users` },
+        { name: 'role', icon: 'groups', text: 'roles', link: `/${lang}/admin/roles` },
+        { name: 'permission', icon: 'app_blocking', text: 'Permissions', link: `/${lang}/admin/permissions` }
       ]
     }
   ];
