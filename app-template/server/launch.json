@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach",
+            "port": 9229,
+            "trace": true,
+            "sourceMaps": true,
+            "request": "attach",
+            "type": "node",
+            "remoteRoot": "/home/node/app/",
+            "resolveSourceMapLocations": [
+                "${workspaceFolder}/dist/**",
+                "!**/node_modules/**"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/dist/**/*.js",
+                "!**/node_modules/**"
+            ],
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        }
+    ]
+}
+// https://dev.to/igooorgp/understanding-how-to-debug-a-dockerized-typescript-application-with-vscode-24k9
+// https://blog.entrostat.com/debugging-a-typescript-project-in-a-docker-container-using-webstorm/
+// https://code.visualstudio.com/docs/containers/debug-node
+// https://code.visualstudio.com/docs/containers/debug-node
+// node typescript webpack debug
+// https://medium.com/hackernoon/debugging-javascript-typescript-node-apps-with-chrome-devtools-vs-code-and-webstorm-97b882aee0ad

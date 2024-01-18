@@ -1,12 +1,14 @@
 {
     "dependencies": {
         "@ckeditor/ckeditor5-angular": "^7.0.1",
+        "@ckeditor/ckeditor5-build-classic": "^40.2.0",
         "@ckeditor/ckeditor5-build-decoupled-document": "^39.0.2",
         "@ckeditor/ckeditor5-core": "39.0.2",
         "@ckeditor/ckeditor5-engine": "39.0.2",
         "@ckeditor/ckeditor5-style": "35.2.1",
         "@ckeditor/ckeditor5-utils": "39.0.2",
         "@ckeditor/ckeditor5-watchdog": "39.0.2",
+        
         "@maxmind/geoip2-node": "^4.2.0",
         "@nestjs/config": "^3.1.1",
         "@nestjs/microservices": "^10.0.2",

@@ -17,6 +17,7 @@ import { LanguageModule, LanguageService } from '@upupa/language';
 import { DataModule } from '@upupa/data';
 import { DF_MATERIAL_THEME_INPUTS, DynamicFormMaterialThemeModule } from '@upupa/dynamic-form-material-theme';
 import AdminLayoutComponent from './layouts/admin-layout/admin-layout.component';
+import { FileSelectComponent } from '@upupa/dynamic-form-native-theme';
 
 
 
@@ -56,7 +57,8 @@ const verifyProvider: Provider = {
     DynamicFormModule.forRoot([], {
       'material': {
         ...DF_MATERIAL_THEME_INPUTS,
-        'html': { component: HtmlEditorComponent }
+        'html': { component: HtmlEditorComponent },
+        'file': { component: FileSelectComponent },
       }
     },
       'material', { enableLogs: true }
