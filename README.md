@@ -32,7 +32,7 @@ cd upupa-cp-creator-main && pnpm link .
 Run the script, specifying the path to your NX workspace:
 
 ```
-node upupa-app.cjs --nx-workspace-root=[PATH_TO_NX_WORKSPACE]
+node upupa-app.cjs --root=[ABSOLUTE_PATH_TO_NX_WORKSPACE_ROOT]
 ```
 
 #### Upupa-App Cli Options And Arguments
