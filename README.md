@@ -71,7 +71,23 @@ Make sure to use different email, password and the right port (Default is 3333)
 
 Happy coding!
 
+### Server side requirements
 
+<!-- generate docker command to run new container from redis/redis-stack:latest with exposed ports -->
+mongo
+redis/redis-stack:latest
+
+#### Using docker
+- MongoDB
+  
+```
+docker run -d -p 27017:27017 --name mongo mongo
+```
+- Redis
+  
+```
+docker run -d -p 6379:6379 --name redis redis/redis-stack:latest
+```
 
 ### Create an NX Workspace
 
