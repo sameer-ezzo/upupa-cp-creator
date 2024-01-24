@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '@upupa/auth';
 import { SCAFFOLDING_SCHEME, ScaffoldingScheme, SideBarGroup } from '@upupa/cp';
 import { languageDir, LanguageService } from '@upupa/language';
-import { Subject, of, switchMap, filter, map, combineLatest } from 'rxjs';
+import { Subject, of, switchMap, map, combineLatest } from 'rxjs';
 import { toTitleCase } from '@upupa/common';
 
 

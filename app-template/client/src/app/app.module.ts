@@ -16,21 +16,24 @@ import { AuthModule, DEFAULT_LOGIN, DEFAULT_VERIFY } from '@upupa/auth';
 import { LanguageModule, LanguageService } from '@upupa/language';
 import { DataModule } from '@upupa/data';
 import { DF_MATERIAL_THEME_INPUTS, DynamicFormMaterialThemeModule } from '@upupa/dynamic-form-material-theme';
+import { DynamicFormNativeThemeModule } from '@upupa/dynamic-form-native-theme';
+
 import AdminLayoutComponent from './layouts/admin-layout/admin-layout.component';
 import { FileSelectComponent } from '@upupa/dynamic-form-native-theme';
+import AccountLayoutComponent from './layouts/account-layout/account-layout.component';
 
 
 
 const logInProvider: Provider = {
   provide: DEFAULT_LOGIN, useFactory: (lang: LanguageService) => {
     const l = lang.language ?? lang.defaultLang
-    return `/${l}/account/login?redirect=/${l}`
+    return `/${l}/account/login?redirect=/${document.location.pathname}`
   }, deps: [LanguageService]
 }
 const verifyProvider: Provider = {
   provide: DEFAULT_VERIFY, useFactory: (lang: LanguageService) => {
     const l = lang.language ?? lang.defaultLang
-    return `/${l}/account/verify?redirect=/${l}`
+    return `/${l}/account/verify?redirect=/${l}/account/login?redirect=/${document.location.pathname}`
   }, deps: [LanguageService]
 }
 
@@ -39,7 +42,8 @@ const verifyProvider: Provider = {
 @NgModule({
   declarations: [
     AppComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    AccountLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,7 @@ const verifyProvider: Provider = {
     HtmlEditorModule.register(`/storage`),
     DataTableModule,
     DynamicFormMaterialThemeModule,
+    DynamicFormNativeThemeModule,
     DynamicFormModule.forRoot([], {
       'material': {
         ...DF_MATERIAL_THEME_INPUTS,

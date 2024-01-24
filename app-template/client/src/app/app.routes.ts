@@ -5,7 +5,7 @@ import AccountLayoutComponent from './layouts/account-layout/account-layout.comp
 import AdminLayoutComponent from './layouts/admin-layout/admin-layout.component';
 import { cpRoutes } from '@upupa/cp';
 export const appRoutes: Routes = [
-    { path: '', redirectTo: 'en/admin', pathMatch: 'full' },
+    { path: '', redirectTo: 'en', pathMatch: 'full' },
     {
         path: ':lang',
         children: [
