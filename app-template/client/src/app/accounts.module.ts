@@ -4,7 +4,7 @@ import { MembershipModule, UsersManagementModule } from '@upupa/membership';
 
 
 @NgModule({
-    imports: [MembershipModule.forRoot(), UsersManagementModule],
+    imports: [MembershipModule, UsersManagementModule],
     exports: [MembershipModule, UsersManagementModule]
 })
 export class AccountsModule { }

@@ -7,7 +7,7 @@ import { RouterOutlet } from '@angular/router';
     standalone: true,
     templateUrl: './account-layout.component.html',
     styleUrls: ['./account-layout.component.scss'],
-    imports: [RouterOutlet],
+    imports: [RouterOutlet]
 })
 export default class AccountLayoutComponent {
 }
