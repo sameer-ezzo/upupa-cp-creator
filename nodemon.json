@@ -1,0 +1,6 @@
+{
+  "watch": ["src"],
+  "ext": "ts",
+  "ignore": ["src/**/*.spec.ts"],
+  "exec": "ts ./src/upupa-app.ts && ts-node ./src/upupa-app.ts"
+}

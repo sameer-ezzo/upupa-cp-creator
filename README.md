@@ -32,28 +32,40 @@ cd upupa-cp-creator-main && pnpm link .
 Run the script, specifying the path to your NX workspace:
 
 ```
-node upupa-app.cjs --root=[ABSOLUTE_PATH_TO_NX_WORKSPACE_ROOT]
+node ./src/upupa-app.js --root=[ABSOLUTE_PATH_TO_NX_WORKSPACE_ROOT]
 ```
 
 #### Upupa-App Cli Options And Arguments
 
-| Option            | Description                                                                   | Default Value   |
-| ----------------- | ----------------------------------------------------------------------------- | --------------- |
-| --nx-workspace-root        | This option allows you to specify the NX workspace root path where the Upupa control panel app will be created.       | parent of the current working directory |
-| --name        | Specifies the name of the Angular app.       | 'control-panel' |
-| --appsPath        | Specify the apps path.       | 'apps' |
-| --libsPath        | Specify the libs path.       | 'libs' |
-| --port        | Specifies the port on which the Angular app will run.   | 4201            |
-| --prefix      | Specifies the prefix for the Angular app.                                     | -               |
-| --bundler         | Specifies the bundler to be used. Options are 'webpack' and 'esbuild'. | 'esbuild'       |
-| --backendProject  | Specifies the name of the backend project.                                    | [app-name]-api               |
-| --style           | Specifies the style preprocessor to be used. Options are 'css', 'scss', 'sass', and 'less'. | 'scss'          |
-
+| Option                                                | Description                                                             | Default Value                   |
+| ----------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------- |
+| `-nxw-name, --nxwName <nx workspace name>`            | Specify the NX workspace name                                           | `upupa-control-panel-workspace` |
+| `-root, --nxWorkspaceRoot <nx workspace root>`        | Specify the NX workspace root path to create the CP app in              | `undefined`                     |
+| `-apps-path, --appsPath <appsPath>`                   | Specify the apps path                                                   | `apps`                          |
+| `-libs-path, --libsPath <libsPath>`                   | Specify the libs path                                                   | `libs`                          |
+| `-backend-name, --backendName <backend project name>` | Specify the backend project name: default is [cp-app-name]-api          | `undefined`                     |
+| `-backend-port, --backendPort <backend project port>` | Specify the backend project port: default is 3333                       | `undefined`                     |
+| `-cp-app-name, --cpAppName <name>`                    | Specify the Angular app name                                            | `control-panel`                 |
+| `-cp-app-port, --cpAppPort <cp app port>`             | Specify the CP App port: default is 4201                                | `4201`                          |
+| `-pref, --cpAppPrefix <prefix>`                       | Specify the Angular app prefix                                          | `undefined`                     |
+| `-b, --cpAppBundler <bundler>`                        | Specify the bundler (webpack, esbuild): default is esbuild              | `esbuild`                       |
+| `-s, --cpAppStyle <style>`                            | Specify the style preprocessor (css, scss, sass, less): default is scss | `scss`                          |
 
 These options can be used when running the script from the command line. For example:
 
 ```
-node upupa-app.cjs --nx-workspace-root ./my-nx-workspace --name my-app --port 4300 --prefix my-prefix --bundler esbuild --backendProject my-backend --style scss
+node ./src/upupa-app.js \
+  --nxwName upupa-control-panel-workspace \
+  --nxWorkspaceRoot ~/path-to-workspace-root \
+  --appsPath apps \
+  --libsPath libs \
+  --backendName api \
+  --backendPort 3333 \
+  --cpAppName cp \
+  --cpAppPort 4201 \
+  --cpAppPrefix cp \
+  --cpAppBundler esbuild \
+  --cpAppStyle scss
 ```
 
 This will create a control panel app in the specified NX workspace with the given parameters.
